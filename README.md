@@ -11,7 +11,7 @@
   * [Vim 에디터 사용](#vim-------)
 - [Remote Repository](#remote-repository)
   * [원격 저장소](#------)
-  * [[README.md](http://README.md) 파일](#-readmemd--http---readmemd----)
+  * [README.md 파일](#-readmemd--http---readmemd----)
 
 # CLI - Command Line Interface
 
