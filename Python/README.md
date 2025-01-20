@@ -138,21 +138,21 @@ https://lab.ssafy.com/s13/python
     ```
     
 - 문자열의 시퀀스 특징
-
-```python
-my_str = 'hello'
-print(my_str[1])
-print(my_str[2:4])
-print(my_str[:3])
-print(my_str[0:5:2])
-print(my_str[::-1])
-print(len(my_str))
-```
-
-|  | h | e | l | l | o |
-| --- | --- | --- | --- | --- | --- |
-| index | 0 | 1 | 2 | 3 | 4 |
-| index | -5 | -4 | -3 | -2 | -1 |
+    
+    ```python
+    my_str = 'hello'
+    print(my_str[1])
+    print(my_str[2:4])
+    print(my_str[:3])
+    print(my_str[0:5:2])
+    print(my_str[::-1])
+    print(len(my_str))
+    ```
+    
+    |  | h | e | l | l | o |
+    | --- | --- | --- | --- | --- | --- |
+    | index | 0 | 1 | 2 | 3 | 4 |
+    | index | -5 | -4 | -3 | -2 | -1 |
 - 문자열은 불변(변경 불가)
 
 ## 참고
