@@ -12,6 +12,13 @@
 - [Remote Repository](#remote-repository)
   * [원격 저장소](#------)
   * [README.md 파일](#-readmemd--http---readmemd----)
+ - [Revert & Reset](#revert---reset)
+  * [Revert](#revert)
+  * [Reset](#reset)
+- [API](#api)
+  * [Interface](#interface)
+  * [API(Application Programming Interface)](#api-application-programming-interface-)
+  * [Chat GPT API 활용](#chat-gpt-api---)
 
 # CLI - Command Line Interface
 
@@ -168,3 +175,57 @@
 
 - 저장소 최상단에 위치해야 원격 저장소에서 올바르게 출력
 - 하나만 존재할 필요는 없음. 각 디렉토리 내 여러 개 존재 가능.
+
+# Revert & Reset
+
+## Revert
+
+- `git revert <commit id>`
+    - 공백을 사용해 여러 commit 동시 처리 가능
+    - `..` 사용해 범위 지정하여 여러 개 동시 처리 가능
+    - `--no-edit`  commit 메시지 작성 위한 편집기 열지 않고 자동으로 진행
+    - `--no-commit`  자동으로 commit 하지 않고 Staging Area에만 올림(이후 직접 commit). 이를 통해 여러 commit을 하나의 commit으로 묶어서 revert 할 수 있
+- “재설정”
+- 단일 commit을 실행 취소 하는 것
+- 프로젝트 기록에서 commit을 없었던 일로 처리 후 그 결과를 새로운 commit으로 추가
+- 즉 기록에서 commit이 사라지지는 않음
+- 변경 사항을 안전하게 실행 취소할 수 있도록 도와주는 **순방향 실행 취소 작업**
+- 기록이 손실되는 것을 방지하며 기록의 무결성과 협업의 신뢰성을 높임
+
+## Reset
+
+- `git reset [옵션] <commit id>`
+- “되돌리기”
+- 특정 commit으로 되돌아 간 뒤, 그 이후의 commit은 모두 삭제
+- 삭제되는 commit들의 기록을 남겨둘 것인지 옵션을 통해 조정
+    - `--soft` - staging area에 남김
+    - `--mixed` - working directory에 남김(기본 옵션 값)
+    - `--hard` - 기록을 남기지 않음
+
+# API
+
+## Interface
+
+- 서로 다른 두 개의 시스템(기기, 소프트웨어)이 정보 교환 시 그 사이 존재하는 접점
+- 기계와 기계, 시스템과 시스템 사이에서도 수많은 Interface를 통해 약속된 방식으로 데이터를 주고 받음
+- Client - 서비스를 요청하는 쪽
+- Server - 요청을 받아서 처리하고, 결과를 응답해주는 쪽
+
+## API(Application Programming Interface)
+
+- 두 소프트웨어(도는 시스템)가 서로 통신할 수 있게 하는 메커니즘
+- 약속된 방식의 인터페이스. 특정 규칙에 따라 데이터를 요청하고 응답하는 규칙 제공
+- Application - 특정 기능을 수행하는 모든 소프트웨어
+- 소셜 로그인, 날씨 앱 등
+- API Key
+    - API에게 요청을 보내는 앱을 구별하기 위한 고유한 식별 문자열
+    - 보안 강화, 데이터 관리
+
+## Chat GPT API 활용
+
+- 챗봇 프로그램을 만들 수 있음
+    1. OpenAI 클라이언트를 초기화하고 API 키로 인증
+    2. 대화의 기본 지침(system)과 사용자 질문(user)을 conversation_history에 추가
+    3. OpenAI API에 conversation_history를 전달하여 응답 생성
+    4. 생성된 응답 출
+- 프롬프트 엔지니어링과 다양한 파라미터 조정을 통해 목적에 맞게 활용할 수 있음
