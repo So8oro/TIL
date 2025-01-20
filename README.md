@@ -12,7 +12,7 @@
 - [Remote Repository](#remote-repository)
   * [원격 저장소](#------)
   * [README.md 파일](#-readmemd--http---readmemd----)
- - [Revert & Reset](#revert---reset)
+- [Revert & Reset](#revert---reset)
   * [Revert](#revert)
   * [Reset](#reset)
 - [API](#api)
