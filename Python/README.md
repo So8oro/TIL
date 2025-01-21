@@ -177,3 +177,424 @@ https://lab.ssafy.com/s13/python
 파이썬 프로그램이 어떻게 실행되는지 도와주는 시각화 도우미
 
 https://pythontutor.com/
+
+# Basic Syntax 2
+
+## Data Types - 이어서
+
+### list 리스트
+
+```python
+# 리스트 표현
+my_list_1 = []
+my_list_2 = [1, 'a', 3.5]
+my_list = [1, 'a', 3, 'b', 5]
+
+# 인덱싱
+print(my_list[1])  # a
+
+# 슬라이싱
+print(my_list[2:4])  # [3, 'b']
+print(my_list[:3])  # [1, 'a', 3]
+print(my_list[3:])  # ['b', 5]
+print(my_list[0:5:2])  # [1, 3, 5]
+print(my_list[::-1])  # [5, 'b', 3, 'a', 1]
+
+# 길이
+print(len(my_list))  # 5
+
+# 중첩된 리스트 접근
+my_list = [1, 2, 3, 'Python', ['hello', 'world', '!!!']]
+print(len(my_list))  # 5
+print(my_list[4][2])  # !!!
+print(my_list[4][1][0])  # w
+
+# 리스트는 가변
+```
+
+### tuple 튜플
+
+- 여러 개의 값을 순서대로 저장하는 변경 불가능한 시퀀스 자료형
+- **단일 요소 튜플을 만들 때는 반드시 Traliling comma (후행 쉼표)**
+
+```python
+# 튜플 표현
+my_tuple_1 = ()
+my_tuple_2 = (1,)
+my_tuple_3 = (1, 'a', 3, 'b', 5)
+
+my_tuple = (1, 'a', 3, 'b', 5)
+
+# 인덱싱
+print(my_tuple[1])  # a
+
+# 슬라이싱
+print(my_tuple[2:4])  # (3, 'b')
+print(my_tuple[:3])  # (1, 'a', 3)
+print(my_tuple[3:])  # ('b', 5)
+print(my_tuple[0:5:2])  # (1, 3, 5)
+print(my_tuple[::-1])  # (5, 'b', 3, 'a', 1)
+
+# 길이
+print(len(my_tuple))  # 5
+
+# 튜플은 불변
+# TypeError: 'tuple' object does not support item assignment
+# my_tuple[1] = 'z'
+```
+
+- 개발 시 직접적으로 사용하는 경우는 흔치 않음
+- 불변 특성을 사용하여 내부 동작과 안전한 데이터 전달에 사용
+
+```python
+# 다중 할당
+x, y = 10, 20
+print(x)  # 10
+print(y)  # 20
+# 실제 내부 동작
+(x, y) = (10, 20)
+
+# 값 교환
+x, y = 1, 2
+x, y = y, x
+# 실제 내부 동작
+temp = (y, x)  # 튜플 생성
+x, y = temp  # 튜플 언패킹
+print(x, y)  # 2 1
+
+# 그룹화
+student = ('Kim', 20, 'CS')
+name, age, major = student  # 언패킹
+print(name, age, major)  # Kim 20 CS
+```
+
+### range
+
+- 연속된 **정수** 시퀀스를 생성하는 **변경 불가능**한 자료형
+
+```python
+# range
+my_range_1 = range(5)
+my_range_2 = range(1, 10)
+my_range_3 = range(5, 0, -1)
+
+print(my_range_1)  # range(0, 5)
+print(my_range_2)  # range(1, 10)
+print(my_range_3)  # range(5, 0, -1)
+
+# 리스트로 형 변환 시 데이터 확인 가능
+print(list(my_range_1))  # [0, 1, 2, 3, 4]
+print(list(my_range_2))  # [1, 2, 3, 4, 5, 6, 7, 8, 9]
+print(list(my_range_3))  # [5, 4, 3, 2, 1]
+
+# 값의 범위 규칙
+
+# 음수 증가 시
+# 시작 값이 끝 값보다 큰 경우 (정상)
+print(list(range(5, 1, -1)))  # [5, 4, 3, 2]
+# 시작 값이 끝 값보다 작은 경우
+print(list(range(1, 5, -1)))  # []
+
+# 양수 증가 시
+# 시작 값이 끝 값보다 작은 경우 (정상)
+print(list(range(1, 5)))  # [1, 2, 3, 4]
+# 시작 값이 끝 값보다 큰 경우
+print(list(range(5, 1)))  # []
+
+# 주로 반복문과 함께 활용 예정
+for i in range(1, 10):
+    print(i)  # 1 2 3 4 5 6 7 8 9
+
+for i in range(1, 10, 2):
+    print(i)  # 1 3 5 7 9
+```
+
+### Non-sequence Types
+
+### dict 딕셔너리
+
+key-value 쌍으로 이루어진 순서와 중복이 없는 변경 가능한 자료형
+
+- key는 변경 불가능한 자료형만 사용(str, int, float, tuple, range, …)
+- value는 모든 자료형 사용 가능
+
+```python
+# 딕셔너리 표현
+my_dict_1 = {}
+my_dict_2 = {'key':"value"}
+my_dict_3 = {'apple':12, 'list':[1,2,3]}
+print(my_dict_1)  # 
+print(my_dict_2)  # 
+print(my_dict_3)  # 
+
+# 딕셔너리는 키에 접근해 값을 얻어냄
+my_dict = {'apple' : 12, 'list': [1, 2, 3]}
+print(my_dict['apple']) # 12
+print(my_dict['list']) # [1, 2, 3]
+print(my_dict['list'][1]) # 2
+
+# 추가
+my_dict['banana'] = 50
+print(my_dict) # {'apple': 12, 'list': [1, 2, 3], 'banana': 50}
+
+# 변경
+my_dict['apple'] = 100
+print(my_dict) # {'apple': 100, 'list': [1, 2, 3], 'banana': 50}
+```
+
+### cf) int와 float는 불변 자료형
+
+- 한 번 생성된 객체 자체는 변경되지 않음
+- 값을 변경하는 것처럼 보일 때 사실은 새로운 객체가 생성되고 참조가 변경되는 것
+- 불변 자료형인 이유
+    - 효율성과 안전성:
+    불변 자료형은 객체가 변경되지 않으므로 여러 곳에서 참조하더라도 문제가 없음
+    - 해싱 가능성:
+    불변 객체는 해시값이 변하지 않으므로, 딕셔너리의 키나 집합의 요소로 사용 가능
+
+### cf) str 불변
+
+- list와 달리, str은 문자열 전체가 하나의 객체로 지정됨
+- list는 list 개별 인덱스가 각각 별개의 객체를 참조
+
+### set 세트
+
+- 순서와 중복이 없는 변경 가능한 자료
+- 수학에서의 집합과 동일한 연산 처리
+
+```python
+# 세트 표현
+my_set_1 = set() # dict과 구분분
+my_set_2 = {1, 2, 3}
+my_set_3 = {1, 1, 1}
+print(my_set_1)  # set()
+print(my_set_2)  # {1, 2, 3}
+print(my_set_3)  # {1}
+
+# 세트의 집합 연산산
+my_set_1 = {1, 2, 3}
+my_set_2 = {3, 6, 9}
+
+# 합집합
+print(my_set_1 | my_set_2)  # {1, 2, 3, 6, 9}
+
+# 차집합
+print(my_set_1 - my_set_2)  # {1, 2}
+
+# 교집합
+print(my_set_1 & my_set_2)  # {3}
+```
+
+### None
+
+값이 없음
+
+```python
+# None
+variable = None
+print(variable)  # None
+```
+
+### Boolean
+
+```python
+# Boolean
+bool_1 = True
+bool_2 = False
+
+print(bool_1)  # True
+print(bool_2)  # False
+print(3 > 1)  # True
+print('3' != 3)  # True
+```
+
+### Collection
+
+| 컬렉션 | 변경 가능 여부 | 순서 여부 |
+| --- | --- | --- |
+| str | X | O |
+| list | O | O |
+| tuple | X | O |
+| dict | O | X |
+| set | O | X |
+
+순서 O - 시퀀스
+
+## 형변환 Type Conversion
+
+한 데이터 타입을 다른 데이터 타입으로 변환
+
+### 암시적 형변환 Implicit Type conversion
+
+파이썬이 자동으로 수행하는 형변환. Boolean, Numeric Type.
+
+```python
+# 암시적 형변환
+
+print(3+5.0) # 8.0
+print(True + 3) # 4
+print(True + False) # 1
+```
+
+### 명시적 형변환 Explicit Type conversion
+
+프로그래머가 직접 지정하는 형변환
+
+```python
+# 명시적 형변환
+
+print(int('1')) # 1
+
+# ValueError: invalid literal for int() with base 10: '3.5'
+print(int('3.5'))
+
+print(int(3.5)) # 3
+
+print(float('3.5')) # 3.5
+
+print(str(1) + '등') # 1등
+```
+
+## 연산자
+
+### 산술 연산자
+
+### 복합 연산자
+
+- 연산과 할당이 함께 이루어짐
+
+### 비교 연산자
+
+- **==**
+    - 값(데이터)이 같은지 비교
+    - 동등성 equality
+- **is**
+    - 객체 자체가 같은지 비교
+    - 식별성 identity
+    - 두 변수가 동일한 메모리 주소(레퍼런스)를 가리키고 있어야 True
+    - 코드 상에서 의도치 않게 False가 나오거나 파이썬 버전에 따른 내부 구현 차이 때문에 결과가 달라질 수 있음
+    - None을 비교할 때, 싱글턴 객체를 비교할 때 사용
+        - None은 파이썬에서 단일 객체로 구성되어 있어, is 연산자 사용이 권장됨
+        - 싱글턴 객체는 애플리케이션 전역에서 단 하나의 객체만 존재하며, 모든 코드가 동일한 인스턴스를 공유
+
+```python
+# is 비교 연산자
+# SyntaxWarning: "is" with a literal. Did you mean "=="?
+print(1 is True)  # False
+print(2 is 2.0)  # False
+
+# 왜 is 대신 ==를 사용해야 하나?
+print(1 is True)  # False
+print(2 is 2.0)  # False
+print(1 == True)  # True
+print(2 == 2.0)  # True
+
+# is 연산자는 언제 사용하는가?
+x = None
+
+# 권장
+if x is None:
+    print('x는 None입니다.')
+
+# 비권장
+if x == None:
+    print('x는 None입니다.')
+
+# 싱글턴 객체
+x = True
+y = True
+
+# True, False, None은 실제로 같은 객체를 가리킨다.
+print(x is y)  # True
+print(True is True)  # True
+print(False is False)  # True
+print(None is None)  # True
+
+# 추가 예시: 리스트나 객체 비교
+a = [1, 2, 3]
+b = [1, 2, 3]
+
+print(a == b)  # True (두 리스트의 값은 동일)
+print(a is b)  # False (서로 다른 리스트 객체)
+
+# b가 a를 그대로 참조하도록 할 경우
+b = a
+print(a is b)  # True (같은 객체를 가리키므로 True)
+```
+
+### 논리 연산자
+
+- and 논리곱
+- or 논리합
+- not 논리부정
+
+### 단축평가
+
+논리 연산에서 두번째 피연산자를 평가하지 않고 결과를 결정하는 동작
+
+- and
+    - 첫번째 피연산자가 False라면 두번째 피연산자를 무시하고 전체 표현식 False
+- or
+    - 첫번째 피연산자가 True라면 두번째 피연산자를 무시하고 전체 표현식 True
+
+코드 실행 최적화, 불필요한 연산 단축
+
+```python
+# 단축 평가
+
+vowels = 'aeiou'
+
+print(('a' and 'b') in vowels)  # False
+print(('b' and 'a') in vowels)  # True
+
+print(3 and 5)  # 5
+print(3 and 0)  # 0
+print(0 and 3)  # 0
+print(0 and 0)  # 0
+
+print(5 or 3)  # 5
+print(3 or 0)  # 3
+print(0 or 3)  # 3
+print(0 or 0)  # 0
+```
+
+### 멤버십 연산자
+
+특정 값이 시퀀스나 다른 컬렉션에 속하는지 여부 확
+
+- in
+- not in
+
+### 시퀀스형 연산자
+
+- + 결합 연산자
+- * 반복 연산자
+
+## 참고
+
+### Trailing Comma
+
+- 컬렉션의 마지막 요소 뒤에 붙는 쉼표
+- 선택사항
+- 단, 하나의 요소로 구성된 튜플은 필수(int와 구분)
+- 가독성 향상
+- 유지보수 용이
+  
+```python
+# Good
+
+items = [
+item1',
+item2',
+]
+
+my_func(
+value1',
+'value2',
+)
+
+# Bad
+
+items = ['item1', 'item2',]
+my_func('value1','value2',)
+```
